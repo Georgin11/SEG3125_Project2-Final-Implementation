@@ -357,6 +357,11 @@ footer .social-media a img:hover {
     margin-bottom: 30px;
 }
 
+.booking .booking-bio {
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
 .booking .locations {
     display: flex;
     justify-content: space-around;
@@ -364,18 +369,49 @@ footer .social-media a img:hover {
 }
 
 .booking .location-item {
-    width: 45%;
+    width: 30%;
     margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
 }
 
 .booking .location-item img {
     width: 100%;
     border-radius: 10px;
+    transition: transform 0.3s;
 }
 
-.booking .location-item p {
-    margin-top: 10px;
-    font-size: 16px;
+.booking .location-item:hover img {
+    transform: scale(1.05);
+}
+
+.booking .location-name {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.booking .btn-book {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #E94B3C;
+    color: white;
+    padding: 10px 0;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 0 0 10px 10px;
+    transition: background 0.3s;
+}
+
+.booking .btn-book:hover {
+    background: #C43D30;
 }
 
 /* Location Details Section */

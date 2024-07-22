@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Courts</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="assets/logo.png" alt="Elite Courts Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index_fr.html">Accueil</a></li>
+                    <li><a href="booking.html">Réservation</a></li>
+                    <li><a href="#">Activités</a></li>
+                    <li><a href="#">Franchise</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="language-selector">
+                <button id="language-btn"><img src="assets/globe-icon.png" alt="Language Icon"> FR</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Language Modal -->
+    <div id="language-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Sélectionnez votre langue préférée</h2>
+            <button class="lang-btn" id="english-btn">English</button>
+            <button class="lang-btn" id="french-btn">Français</button>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>Elite Courts</h1>
+            <p>INSTALLATIONS SPORTIVES INTÉRIEURES PREMIUM | 24/7</p>
+            <a href="booking.html" class="btn-primary">RÉSERVEZ VOTRE TERRAIN MAINTENANT</a>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <p>Chez Elite Courts, nous redéfinissons le jeu. Avec plusieurs emplacements de terrains intérieurs ultramodernes dans la région du Grand Toronto, nous offrons une expérience sportive inégalée pour les passionnés de tous niveaux. Que vous soyez passionné de basket-ball, de volley-ball, de balle au prisonnier ou de tout autre sport, nos installations accessibles 24 heures sur 24 sont conçues pour élever vos compétences.</p>
+        </div>
+    </section>
+
+    <section class="carousel">
+        <button class="carousel-control prev">&lt;</button>
+        <div class="carousel-images">
+            <img src="assets/court1.jpg" alt="Court 1">
+            <img src="assets/court2.jpg" alt="Court 2">
+            <img src="assets/court3.jpg" alt="Court 3">
+            <img src="assets/court4.jpg" alt="Court 4">
+            <img src="assets/court5.jpg" alt="Court 5">
+            <div class="carousel-video">
+               <iframe width="700" height="315" src="https://www.youtube.com/embed/g2keUlYN6Ms" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <button class="carousel-control next">&gt;</button>
+    </section>
+
+    <section class="features">
+        <div class="container feature-container">
+            <div class="feature">
+                <img src="assets/game-icon.png" alt="Game Icon">
+                <h2>Entrez dans le jeu</h2>
+                <p>Découvrez un monde de possibilités sur nos terrains immaculés. Perfectionnez vos dunks, affinez vos services et dominez le terrain comme jamais auparavant. Notre engagement envers l'excellence est égalé uniquement par notre engagement à fournir un environnement accueillant et inclusif pour les athlètes de tous horizons.</p>
+            </div>
+            <div class="feature">
+                <img src="assets/24-7-icon.png" alt="24/7 Icon">
+                <h2>Ouvert 24/7</h2>
+                <p>Avec un accès 24 heures sur 24, vous contrôlez votre jeu. Nos emplacements facilement accessibles garantissent que votre prochain match est toujours à portée de main. Que vous soyez un professionnel passionné, un guerrier du week-end ou une famille en quête de divertissement actif, Elite Courts est l'endroit où vous devez être.</p>
+            </div>
+            <div class="feature">
+                <img src="assets/birthday-icon.png" alt="Birthday Icon">
+                <h2>Forfaits d'anniversaire</h2>
+                <p>Vous recherchez une expérience de fête d'anniversaire sur le thème du sport exceptionnelle? Votre recherche se termine ici! Elite Courts propose une variété de forfaits de fête d'anniversaire distinctifs pour répondre à tous vos besoins.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews">
+        <div class="container">
+            <h2>Avis des clients</h2>
+            <div class="reviews-container">
+                <div class="review-summary">
+                    <h3>Résumé des avis</h3>
+                    <p>"J'ai récemment eu le plaisir de jouer au basket sur le nouveau terrain. Le terrain est magnifique avec des lignes fraîchement peintes et une surface de jeu parfaitement plane."</p>
+                    <p>"Très propre et spacieux! L'emplacement est central juste à côté de l'autoroute. 4 terrains complets et un demi-terrain. Basket-ball et volley-ball disponibles. Le lieu incontournable désormais."</p>
+                    <p>"Chaque terrain dispose de bancs pour les joueurs, ce qui est particulièrement pratique pour les enfants participant aux programmes de basket-ball de Nike. De plus, il y a ..."</p>
+                </div>
+                <div class="write-review">
+                    <h3>Rédiger un avis</h3>
+                    <form id="review-form">
+                        <textarea placeholder="Écrivez votre avis ici..."></textarea>
+                        <button type="submit">Publier</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info">
+        <div class="container">
+            <div class="info-item">
+                <img src="assets/hours-icon.png" alt="Heures d'ouverture">
+                <h3>Heures d'ouverture</h3>
+                <p>Nos emplacements sont ouverts 24 heures sur 24, 7 jours sur 7</p>
+            </div>
+            <div class="info-item">
+                <img src="assets/booking-icon.png" alt="Réservation">
+                <h3>Réservation</h3>
+                <p>Système de réservation en ligne simple et accessible avec la possibilité de voir tous les créneaux horaires disponibles</p>
+            </div>
+            <div class="info-item">
+                <img src="assets/activities-icon.png" alt="Activités">
+                <h3>Activités</h3>
+                <p>Nos installations offrent divers sports, y compris le pickleball, le cricket, la balle au prisonnier et bien plus encore</p>
+            </div>
+            <div class="info-item">
+                <img src="assets/location-icon.png" alt="Nos emplacements">
+                <h3>Nos emplacements</h3>
+                <p>Plusieurs emplacements dans la région du Grand Toronto et nous recherchons continuellement de nouveaux espaces pour de futures installations</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <div>
+                    <h4>Contactez-nous</h4>
+                    <p>Téléphone : 1800-222-2345</p>
+                    <p>Email : EliteCourtsBooking@gmail.com</p>
+                </div>
+            </div>
+            <div class="social-media">
+                <a href="#"><img src="assets/facebook-icon.png" alt="Facebook"></a>
+                <a href="#"><img src="assets/instagram-icon.png" alt="Instagram"></a>
+                <a href="#"><img src="assets/phone-icon.png" alt="Téléphone"></a>
+                <a href="#"><img src="assets/email-icon.png" alt="Email"></a>
+                <a href="#"><img src="assets/tiktok-icon.png" alt="Tiktok"></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

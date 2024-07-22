@@ -424,47 +424,41 @@ footer .social-media a img:hover {
     right: 20px;
 }
 
-/* Features Section */
+/* Features section styles */
 .features {
-    background: rgba(46, 46, 46, 0.8); /* Add background image with less opacity */
-    color: #fff;
+    background: #eaeaea;
     padding: 50px 0;
-    text-align: center;
-    background-image: url('assets/background.jpg'); /* Update with the correct image path */
-    background-size: cover;
-    background-position: center;
 }
 
-.features .feature-container {
+.feature-container {
     display: flex;
-    justify-content: space-around;
+    gap: 20px;
+    justify-content: space-between;
 }
 
-.features .feature {
-    width: 30%;
-    margin: 20px;
-    text-align: left;
-    background: rgba(51, 51, 51, 0.8); /* Use less opacity */
+.feature {
+    flex: 1;
+    background: #fff;
     padding: 20px;
+    text-align: center;
     border-radius: 5px;
-    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.features .feature img {
+.feature img {
     width: 50px;
     margin-bottom: 10px;
 }
 
-.features h2 {
+.feature h2 {
     font-size: 24px;
     margin-bottom: 10px;
 }
 
-.features p {
+.feature p {
     font-size: 16px;
-    line-height: 1.5;
+    color: #555;
 }
-
 /* Info Section */
 .info {
     background: #000;

@@ -66,7 +66,7 @@ header nav ul li a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5); /* Adjust opacity here */
     z-index: 1;
 }
 

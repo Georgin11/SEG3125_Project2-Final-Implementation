@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Location Details</title>
+    <title>Location Details - Elite Courts</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
 </head>
 <body>
     <header>
@@ -27,51 +28,56 @@
         <div class="container">
             <h1 id="location-name">Location Name</h1>
             <p id="location-address">Address</p>
-            <a id="book-now-btn" href="booking.html" class="btn-primary">BOOK NOW</a>
-            <div class="main-image">
-                <img id="main-image" src="assets/pickering-court1.jpg" alt="Main Court Image">
+            <a href="#" class="btn-primary" id="book-now-btn">BOOK NOW</a>
+            <div class="location-images">
+                <div class="large-image">
+                    <img id="main-image" src="assets/pickering-court1.jpg" alt="Court Image">
+                </div>
+                <div class="image-gallery">
+                    <img class="gallery-image" src="assets/pickering-court1.jpg" alt="Court Image 1">
+                    <img class="gallery-image" src="assets/pickering-court2.jpg" alt="Court Image 2">
+                    <img class="gallery-image" src="assets/pickering-court3.jpg" alt="Court Image 3">
+                    <img class="gallery-image" src="assets/pickering-court4.jpg" alt="Court Image 4">
+                    <img class="gallery-image" src="assets/pickering-court5.jpg" alt="Court Image 5">
+                </div>
             </div>
-            <div class="gallery">
-                <img class="gallery-image" src="assets/pickering-court1.jpg" alt="Court 1">
-                <img class="gallery-image" src="assets/pickering-court2.jpg" alt="Court 2">
-                <img class="gallery-image" src="assets/pickering-court3.jpg" alt="Court 3">
-                <img class="gallery-image" src="assets/pickering-court4.jpg" alt="Court 4">
-                <img class="gallery-image" src="assets/pickering-court5.jpg" alt="Court 5">
-            </div>
-            <div class="map">
-                <iframe src="" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <div class="location-features">
+            <div class="location-info">
                 <h2>Location Features:</h2>
                 <p id="location-features">Multi-purpose 4 full courts & 1 half court: Basketball</p>
             </div>
-            <section class="schedule">
-                <div class="container">
-                    <h2>Available Times</h2>
-                    <table id="schedule-table">
-                        <thead>
-                            <tr>
-                                <th>Day</th>
-                                <th>Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-            <section class="contact-form">
-                <div class="container">
-                    <h2>Book Your Court</h2>
-                    <form>
-                        <input type="text" placeholder="Your Name *" required>
-                        <input type="email" placeholder="Email Address *" required>
-                        <input type="tel" placeholder="Phone Number *" required>
-                        <textarea placeholder="Your Message *" required></textarea>
-                        <button type="submit" class="btn-primary">SEND</button>
-                    </form>
-                </div>
-            </section>
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18..."></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking-form">
+        <div class="container">
+            <h2>Book Your Court</h2>
+            <form id="booking-form">
+                <input type="text" id="name" name="name" placeholder="Your Name *" required>
+                <input type="email" id="email" name="email" placeholder="Email Address *" required>
+                <input type="text" id="phone" name="phone" placeholder="Phone Number *" required>
+                <textarea id="message" name="message" placeholder="Your Message *" required></textarea>
+                <button type="submit" class="btn-primary">SEND</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="schedule">
+        <div class="container">
+            <h2>Available Times</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody id="schedule-table">
+                    <!-- Dynamic schedule rows -->
+                </tbody>
+            </table>
         </div>
     </section>
 
@@ -93,7 +99,5 @@
             </div>
         </div>
     </footer>
-
-    <script src="scripts.js"></script>
 </body>
 </html>

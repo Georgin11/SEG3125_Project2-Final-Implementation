@@ -1,18 +1,25 @@
-let currentIndex = 0;
+document.addEventListener('DOMContentLoaded', function() {
+    // Carousel Controls
+    let currentIndex = 0;
+    const images = document.querySelectorAll('.carousel-images img, .carousel-video');
+    const totalImages = images.length;
 
-const images = document.querySelectorAll('.carousel-images img, .carousel-video');
-const totalImages = images.length;
+    document.querySelector('.carousel-control.prev').addEventListener('click', () => {
+        currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
+        updateCarousel();
+    });
 
-document.querySelector('.carousel-control.prev').addEventListener('click', () => {
-    currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
-    updateCarousel();
-});
+    document.querySelector('.carousel-control.next').addEventListener('click', () => {
+        currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
+        updateCarousel();
+    });
 
-document.querySelector('.carousel-control.next').addEventListener('click', () => {
-    currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
-    updateCarousel();
-});
-document.addEventListener('DOMContentLoaded', function () {
+    function updateCarousel() {
+        const offset = -currentIndex * 100;
+        document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
+    }
+
+    // Language Modal
     const languageBtn = document.getElementById('language-btn');
     const languageModal = document.getElementById('language-modal');
     const closeBtn = document.querySelector('.close-btn');
@@ -42,63 +49,51 @@ document.addEventListener('DOMContentLoaded', function () {
         languageModal.style.display = 'none';
         window.location.href = 'index_fr.html'; // Redirect to the French version
     });
-});
 
-let currentIndex = 0;
-
-const images = document.querySelectorAll('.carousel-images img, .carousel-video');
-const totalImages = images.length;
-
-document.querySelector('.carousel-control.prev').addEventListener('click', () => {
-    currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
-    updateCarousel();
-});
-
-document.querySelector('.carousel-control.next').addEventListener('click', () => {
-    currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
-    updateCarousel();
-});
-
-function updateCarousel() {
-    const offset = -currentIndex * 100;
-    document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
-}
-
-document.getElementById('review-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const reviewText = this.querySelector('textarea').value;
+    // Review Posting and Removal
+    const reviewForm = document.getElementById('review-form');
     const reviewSummary = document.querySelector('.review-summary');
-    const newReview = document.createElement('p');
-    newReview.textContent = reviewText;
-    reviewSummary.appendChild(newReview);
-    this.reset();
-});
 
-function updateCarousel() {
-    const offset = -currentIndex * 100;
-    document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
-}
+    reviewForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const textarea = reviewForm.querySelector('textarea');
+        const reviewText = textarea.value;
 
-document.getElementById('review-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const reviewText = this.querySelector('textarea').value;
-    const reviewSummary = document.querySelector('.review-summary');
-    const newReview = document.createElement('p');
-    newReview.textContent = reviewText;
-    
-    const removeButton = document.createElement('button');
-    removeButton.textContent = 'X';
-    removeButton.classList.add('remove-review');
-    removeButton.addEventListener('click', function () {
-        reviewSummary.removeChild(newReview);
+        if (reviewText.trim() === "") return;
+
+        const reviewParagraph = document.createElement('p');
+        reviewParagraph.textContent = reviewText;
+
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'x';
+        removeButton.classList.add('remove-review');
+        removeButton.onclick = function() {
+            reviewParagraph.remove();
+        };
+
+        reviewParagraph.appendChild(removeButton);
+        reviewSummary.appendChild(reviewParagraph);
+        textarea.value = "";
     });
 
-    newReview.appendChild(removeButton);
-    reviewSummary.appendChild(newReview);
-    this.reset();
-});
+    reviewSummary.addEventListener('click', function(event) {
+        if (event.target.classList.contains('remove-review')) {
+            event.target.parentElement.remove();
+        }
+    });
 
-document.addEventListener('DOMContentLoaded', function () {
+    // FAQ Toggle
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('h3');
+        question.addEventListener('click', () => {
+            const answer = item.querySelector('.faq-answer');
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+
+    // Location Details (if applicable)
     const urlParams = new URLSearchParams(window.location.search);
     const location = urlParams.get('location');
     const locationData = {
@@ -139,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
             map: 'https://www.google.com/maps/embed?...'
         }
     };
-    
+
     if (locationData[location]) {
         document.getElementById('location-name').textContent = locationData[location].name;
         document.getElementById('location-address').textContent = locationData[location].address;
@@ -147,10 +142,10 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.map iframe').src = locationData[location].map;
         document.getElementById('book-now-btn').href = `booking.html?location=${location}`;
     }
-    
+
     const galleryImages = document.querySelectorAll('.gallery-image');
     const mainImage = document.getElementById('main-image');
-    
+
     galleryImages.forEach(img => {
         img.addEventListener('click', function () {
             mainImage.src = this.src;
@@ -172,7 +167,6 @@ document.addEventListener('DOMContentLoaded', function () {
             row.appendChild(dayCell);
             row.appendChild(timeCell);
             scheduleTable.appendChild(row);
-            
         });
     });
 });

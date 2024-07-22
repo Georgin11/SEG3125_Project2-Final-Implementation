@@ -1,104 +1,44 @@
-let currentIndex = 0;
-
-const images = document.querySelectorAll('.carousel-images img, .carousel-video');
-const totalImages = images.length;
-
-document.querySelector('.carousel-control.prev').addEventListener('click', () => {
-    currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
-    updateCarousel();
-});
-
-document.querySelector('.carousel-control.next').addEventListener('click', () => {
-    currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
-    updateCarousel();
-});
 document.addEventListener('DOMContentLoaded', function () {
-    const languageBtn = document.getElementById('language-btn');
-    const languageModal = document.getElementById('language-modal');
-    const closeBtn = document.querySelector('.close-btn');
-    const englishBtn = document.getElementById('english-btn');
-    const frenchBtn = document.getElementById('french-btn');
+    // Carousel
+    let currentIndex = 0;
+    const images = document.querySelectorAll('.carousel-images img, .carousel-video');
+    const totalImages = images.length;
 
-    languageBtn.addEventListener('click', function () {
-        languageModal.style.display = 'flex';
+    document.querySelector('.carousel-control.prev').addEventListener('click', () => {
+        currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
+        updateCarousel();
     });
 
-    closeBtn.addEventListener('click', function () {
-        languageModal.style.display = 'none';
+    document.querySelector('.carousel-control.next').addEventListener('click', () => {
+        currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
+        updateCarousel();
     });
 
-    window.addEventListener('click', function (event) {
-        if (event.target === languageModal) {
-            languageModal.style.display = 'none';
-        }
+    function updateCarousel() {
+        const offset = -currentIndex * 100;
+        document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
+    }
+
+    // Review Form
+    document.getElementById('review-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const reviewText = this.querySelector('textarea').value;
+        const reviewSummary = document.querySelector('.review-summary');
+        const newReview = document.createElement('p');
+        newReview.textContent = reviewText;
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'X';
+        removeButton.classList.add('remove-review');
+        newReview.appendChild(removeButton);
+        reviewSummary.appendChild(newReview);
+        this.reset();
+
+        removeButton.addEventListener('click', () => {
+            reviewSummary.removeChild(newReview);
+        });
     });
 
-    englishBtn.addEventListener('click', function () {
-        languageModal.style.display = 'none';
-        window.location.href = 'index.html'; // Redirect to the English version
-    });
-
-    frenchBtn.addEventListener('click', function () {
-        languageModal.style.display = 'none';
-        window.location.href = 'index_fr.html'; // Redirect to the French version
-    });
-});
-
-let currentIndex = 0;
-
-const images = document.querySelectorAll('.carousel-images img, .carousel-video');
-const totalImages = images.length;
-
-document.querySelector('.carousel-control.prev').addEventListener('click', () => {
-    currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
-    updateCarousel();
-});
-
-document.querySelector('.carousel-control.next').addEventListener('click', () => {
-    currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
-    updateCarousel();
-});
-
-function updateCarousel() {
-    const offset = -currentIndex * 100;
-    document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
-}
-
-document.getElementById('review-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const reviewText = this.querySelector('textarea').value;
-    const reviewSummary = document.querySelector('.review-summary');
-    const newReview = document.createElement('p');
-    newReview.textContent = reviewText;
-    reviewSummary.appendChild(newReview);
-    this.reset();
-});
-
-function updateCarousel() {
-    const offset = -currentIndex * 100;
-    document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
-}
-
-document.getElementById('review-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const reviewText = this.querySelector('textarea').value;
-    const reviewSummary = document.querySelector('.review-summary');
-    const newReview = document.createElement('p');
-    newReview.textContent = reviewText;
-    
-    const removeButton = document.createElement('button');
-    removeButton.textContent = 'X';
-    removeButton.classList.add('remove-review');
-    removeButton.addEventListener('click', function () {
-        reviewSummary.removeChild(newReview);
-    });
-
-    newReview.appendChild(removeButton);
-    reviewSummary.appendChild(newReview);
-    this.reset();
-});
-
-document.addEventListener('DOMContentLoaded', function () {
+    // Location Details
     const urlParams = new URLSearchParams(window.location.search);
     const location = urlParams.get('location');
     const locationData = {
@@ -139,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
             map: 'https://www.google.com/maps/embed?...'
         }
     };
-    
+
     if (locationData[location]) {
         document.getElementById('location-name').textContent = locationData[location].name;
         document.getElementById('location-address').textContent = locationData[location].address;
@@ -147,10 +87,10 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.map iframe').src = locationData[location].map;
         document.getElementById('book-now-btn').href = `booking.html?location=${location}`;
     }
-    
+
     const galleryImages = document.querySelectorAll('.gallery-image');
     const mainImage = document.getElementById('main-image');
-    
+
     galleryImages.forEach(img => {
         img.addEventListener('click', function () {
             mainImage.src = this.src;
@@ -172,7 +112,33 @@ document.addEventListener('DOMContentLoaded', function () {
             row.appendChild(dayCell);
             row.appendChild(timeCell);
             scheduleTable.appendChild(row);
-            
         });
+    });
+
+    // Language Selector
+    const languageSelectorBtn = document.getElementById('language-selector-btn');
+    const languageModal = document.getElementById('language-modal');
+    const closeBtn = document.querySelector('.close-btn');
+
+    languageSelectorBtn.addEventListener('click', () => {
+        languageModal.style.display = 'flex';
+    });
+
+    closeBtn.addEventListener('click', () => {
+        languageModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === languageModal) {
+            languageModal.style.display = 'none';
+        }
+    });
+
+    document.getElementById('english-btn').addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
+
+    document.getElementById('french-btn').addEventListener('click', () => {
+        window.location.href = 'index_fr.html';
     });
 });

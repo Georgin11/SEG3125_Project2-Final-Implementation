@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <script src="scripts.js" defer></script>
 </head>
 <body>
     <header>
@@ -23,8 +24,21 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
+            <div class="language-selector">
+                <button id="language-btn"><img src="assets/globe-icon.png" alt="Language Icon"> EN</button>
+            </div>
         </div>
     </header>
+
+    <!-- Language Modal -->
+    <div id="language-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Select your preferred language</h2>
+            <button class="lang-btn" id="english-btn">English</button>
+            <button class="lang-btn" id="french-btn">Français</button>
+        </div>
+    </div>
 
     <section class="hero">
         <div class="overlay"></div>

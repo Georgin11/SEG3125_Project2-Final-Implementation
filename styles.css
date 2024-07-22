@@ -465,19 +465,6 @@ footer .social-media a img:hover {
     line-height: 1.5;
 }
 
-.features a {
-    color: #E94B3C;
-    text-decoration: none;
-    font-weight: bold;
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
-}
-
-.features a:hover {
-    text-decoration: underline;
-}
-
 /* Info Section */
 .info {
     background: #000;
@@ -559,4 +546,21 @@ footer .social-media a img:hover {
 
 .reviews-container .write-review form button:hover {
     background: #C43D30;
+}
+
+.reviews-container .review-summary p {
+    position: relative;
+}
+
+.reviews-container .review-summary p .remove-review {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-size: 14px;
 }

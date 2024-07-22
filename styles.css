@@ -126,10 +126,12 @@ header nav ul li a:hover {
     transition: transform 0.5s ease-in-out;
 }
 
-.carousel-images img {
+.carousel-images img, .carousel-images .carousel-item {
     min-width: 100%;
     height: 600px; /* Increased the height */
     object-fit: cover;
+    text-decoration: none;
+    color: inherit;
 }
 
 .carousel-video {
@@ -337,4 +339,67 @@ footer .social-media a img {
 
 footer .social-media a img:hover {
     transform: scale(1.1);
+}
+
+/* Booking Section */
+.booking {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.booking h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.booking p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.booking .locations {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.booking .location-item {
+    width: 45%;
+    margin-bottom: 20px;
+}
+
+.booking .location-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.booking .location-item p {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* Location Details Section */
+.location-details {
+    padding: 50px 0;
+}
+
+.location-details h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.location-details .location-images img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.location-details .location-info {
+    text-align: center;
+}
+
+.location-details .map iframe {
+    width: 100%;
+    height: 400px;
+    border: 0;
 }

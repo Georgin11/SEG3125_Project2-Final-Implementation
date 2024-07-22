@@ -12,6 +12,67 @@ document.querySelector('.carousel-control.next').addEventListener('click', () =>
     currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
     updateCarousel();
 });
+document.addEventListener('DOMContentLoaded', function () {
+    const languageBtn = document.getElementById('language-btn');
+    const languageModal = document.getElementById('language-modal');
+    const closeBtn = document.querySelector('.close-btn');
+    const englishBtn = document.getElementById('english-btn');
+    const frenchBtn = document.getElementById('french-btn');
+
+    languageBtn.addEventListener('click', function () {
+        languageModal.style.display = 'flex';
+    });
+
+    closeBtn.addEventListener('click', function () {
+        languageModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function (event) {
+        if (event.target === languageModal) {
+            languageModal.style.display = 'none';
+        }
+    });
+
+    englishBtn.addEventListener('click', function () {
+        languageModal.style.display = 'none';
+        window.location.href = 'index.html'; // Redirect to the English version
+    });
+
+    frenchBtn.addEventListener('click', function () {
+        languageModal.style.display = 'none';
+        window.location.href = 'index_fr.html'; // Redirect to the French version
+    });
+});
+
+let currentIndex = 0;
+
+const images = document.querySelectorAll('.carousel-images img, .carousel-video');
+const totalImages = images.length;
+
+document.querySelector('.carousel-control.prev').addEventListener('click', () => {
+    currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
+    updateCarousel();
+});
+
+document.querySelector('.carousel-control.next').addEventListener('click', () => {
+    currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
+    updateCarousel();
+});
+
+function updateCarousel() {
+    const offset = -currentIndex * 100;
+    document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
+}
+
+document.getElementById('review-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const reviewText = this.querySelector('textarea').value;
+    const reviewSummary = document.querySelector('.review-summary');
+    const newReview = document.createElement('p');
+    newReview.textContent = reviewText;
+    reviewSummary.appendChild(newReview);
+    this.reset();
+});
 
 function updateCarousel() {
     const offset = -currentIndex * 100;
@@ -111,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
             row.appendChild(dayCell);
             row.appendChild(timeCell);
             scheduleTable.appendChild(row);
+            
         });
     });
 });

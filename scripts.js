@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Carousel Controls
+document.addEventListener('DOMContentLoaded', function () {
+    // Carousel functionality
     let currentIndex = 0;
     const images = document.querySelectorAll('.carousel-images img, .carousel-video');
     const totalImages = images.length;
@@ -19,81 +19,36 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
     }
 
-    // Language Modal
-    const languageBtn = document.getElementById('language-btn');
-    const languageModal = document.getElementById('language-modal');
-    const closeBtn = document.querySelector('.close-btn');
-    const englishBtn = document.getElementById('english-btn');
-    const frenchBtn = document.getElementById('french-btn');
-
-    languageBtn.addEventListener('click', function () {
-        languageModal.style.display = 'flex';
-    });
-
-    closeBtn.addEventListener('click', function () {
-        languageModal.style.display = 'none';
-    });
-
-    window.addEventListener('click', function (event) {
-        if (event.target === languageModal) {
-            languageModal.style.display = 'none';
-        }
-    });
-
-    englishBtn.addEventListener('click', function () {
-        languageModal.style.display = 'none';
-        window.location.href = 'index.html'; // Redirect to the English version
-    });
-
-    frenchBtn.addEventListener('click', function () {
-        languageModal.style.display = 'none';
-        window.location.href = 'index_fr.html'; // Redirect to the French version
-    });
-
-    // Review Posting and Removal
-    const reviewForm = document.getElementById('review-form');
-    const reviewSummary = document.querySelector('.review-summary');
-
-    reviewForm.addEventListener('submit', function(event) {
+    // Review form functionality
+    document.getElementById('review-form').addEventListener('submit', function(event) {
         event.preventDefault();
-        const textarea = reviewForm.querySelector('textarea');
-        const reviewText = textarea.value;
+        const reviewText = this.querySelector('textarea').value;
+        const reviewSummary = document.querySelector('.review-summary');
+        const newReview = document.createElement('p');
 
-        if (reviewText.trim() === "") return;
+        // Create the review text node
+        const reviewTextNode = document.createTextNode(reviewText);
 
-        const reviewParagraph = document.createElement('p');
-        reviewParagraph.textContent = reviewText;
-
-        const removeButton = document.createElement('button');
-        removeButton.textContent = 'x';
-        removeButton.classList.add('remove-review');
-        removeButton.onclick = function() {
-            reviewParagraph.remove();
-        };
-
-        reviewParagraph.appendChild(removeButton);
-        reviewSummary.appendChild(reviewParagraph);
-        textarea.value = "";
-    });
-
-    reviewSummary.addEventListener('click', function(event) {
-        if (event.target.classList.contains('remove-review')) {
-            event.target.parentElement.remove();
-        }
-    });
-
-    // FAQ Toggle
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    faqItems.forEach(item => {
-        const question = item.querySelector('h3');
-        question.addEventListener('click', () => {
-            const answer = item.querySelector('.faq-answer');
-            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        // Create the delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'x';
+        deleteButton.classList.add('remove-review');
+        deleteButton.addEventListener('click', function() {
+            reviewSummary.removeChild(newReview);
         });
+
+        // Append the text node and delete button to the review paragraph
+        newReview.appendChild(reviewTextNode);
+        newReview.appendChild(deleteButton);
+
+        // Append the new review paragraph to the review summary
+        reviewSummary.appendChild(newReview);
+
+        // Reset the form
+        this.reset();
     });
 
-    // Location Details (if applicable)
+    // Location details functionality
     const urlParams = new URLSearchParams(window.location.search);
     const location = urlParams.get('location');
     const locationData = {
@@ -143,30 +98,87 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('book-now-btn').href = `booking.html?location=${location}`;
     }
 
+    // Image gallery functionality similar to the carousel
+    let currentImageIndex = 0;
     const galleryImages = document.querySelectorAll('.gallery-image');
     const mainImage = document.getElementById('main-image');
+    const totalGalleryImages = galleryImages.length;
 
-    galleryImages.forEach(img => {
+    galleryImages.forEach((img, index) => {
         img.addEventListener('click', function () {
-            mainImage.src = this.src;
+            currentImageIndex = index;
+            updateGallery();
         });
     });
 
-    // Populate schedule (dummy data)
-    const scheduleTable = document.getElementById('schedule-table');
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    const times = ['8 AM - 10 AM', '10 AM - 12 PM', '12 PM - 2 PM', '2 PM - 4 PM', '4 PM - 6 PM', '6 PM - 8 PM', '8 PM - 10 PM'];
+    function updateGallery() {
+        const offset = -currentImageIndex * 100;
+        mainImage.style.transform = `translateX(${offset}%)`;
+        mainImage.src = galleryImages[currentImageIndex].src;
+    }
 
-    days.forEach(day => {
+    // Date and Time Dropdowns
+    const dateSelect = document.getElementById('date-select');
+    const timeSelect = document.getElementById('time-select');
+
+    // Function to populate dates
+    function populateDates() {
+        const today = new Date();
+        for (let i = 0; i < 7; i++) {
+            const date = new Date();
+            date.setDate(today.getDate() + i);
+            const option = document.createElement('option');
+            option.value = date.toISOString().split('T')[0];
+            option.textContent = date.toDateString();
+            dateSelect.appendChild(option);
+        }
+    }
+
+    // Function to populate times based on selected date
+    function populateTimes(selectedDate) {
+        const times = [
+            '8 AM - 10 AM',
+            '10 AM - 12 PM',
+            '12 PM - 2 PM',
+            '2 PM - 4 PM',
+            '4 PM - 6 PM',
+            '6 PM - 8 PM',
+            '8 PM - 10 PM'
+        ];
+
+        // Example of graying out times for a specific date (e.g., today's date)
+        const disabledTimes = selectedDate === new Date().toISOString().split('T')[0] ? ['10 AM - 12 PM', '4 PM - 6 PM'] : [];
+
+        // Clear existing options
+        timeSelect.innerHTML = '';
+
         times.forEach(time => {
-            const row = document.createElement('tr');
-            const dayCell = document.createElement('td');
-            const timeCell = document.createElement('td');
-            dayCell.textContent = day;
-            timeCell.textContent = time;
-            row.appendChild(dayCell);
-            row.appendChild(timeCell);
-            scheduleTable.appendChild(row);
+            const option = document.createElement('option');
+            option.value = time;
+            option.textContent = time;
+            if (disabledTimes.includes(time)) {
+                option.disabled = true;
+                option.style.color = 'gray';
+            }
+            timeSelect.appendChild(option);
         });
+    }
+
+    // Event listener for date selection
+    dateSelect.addEventListener('change', function () {
+        populateTimes(this.value);
     });
+
+    // Initial population
+    populateDates();
+    populateTimes(dateSelect.value);
+
+    // Form submission event
+    document.getElementById('booking-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        alert(`Your booking request has been emailed to ${email}`);
+        this.reset();
+    });
+    
 });

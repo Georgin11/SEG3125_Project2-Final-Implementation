@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Location Details - Elite Courts</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js" defer></script>
+    <script src="booking.js" defer></script>
 </head>
 <body>
     <header>
@@ -17,7 +17,6 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="booking.html">Booking</a></li>
-                    <li><a href="#">Activities</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
@@ -28,17 +27,16 @@
         <div class="container">
             <h1 id="location-name">Location Name</h1>
             <p id="location-address">Address</p>
-            <a href="#" class="btn-primary" id="book-now-btn">BOOK NOW</a>
             <div class="location-images">
                 <div class="large-image">
-                    <img id="main-image" src="assets/pickering-court1.jpg" alt="Court Image">
+                    <img id="main-image" src="assets/default.jpg" alt="Court Image">
                 </div>
                 <div class="image-gallery">
-                    <img class="gallery-image" src="assets/pickering-court1.jpg" alt="Court Image 1">
-                    <img class="gallery-image" src="assets/pickering-court2.jpg" alt="Court Image 2">
-                    <img class="gallery-image" src="assets/pickering-court3.jpg" alt="Court Image 3">
-                    <img class="gallery-image" src="assets/pickering-court4.jpg" alt="Court Image 4">
-                    <img class="gallery-image" src="assets/pickering-court5.jpg" alt="Court Image 5">
+                    <img class="gallery-image" src="assets/pickering-court1_.jpg" alt="Court Image 1">
+                    <img class="gallery-image" src="assets/pickering-court2_.jpg" alt="Court Image 2">
+                    <img class="gallery-image" src="assets/pickering-court3_.jpg" alt="Court Image 3">
+                    <img class="gallery-image" src="assets/pickering-court4_.jpg" alt="Court Image 4">
+                    <img class="gallery-image" src="assets/pickering-court5_.jpg" alt="Court Image 5">
                 </div>
             </div>
             <div class="location-info">
@@ -59,6 +57,10 @@
                 <input type="email" id="email" name="email" placeholder="Email Address *" required>
                 <input type="text" id="phone" name="phone" placeholder="Phone Number *" required>
                 <textarea id="message" name="message" placeholder="Your Message *" required></textarea>
+                <label for="date-select">Select Date:</label>
+                <select id="date-select" name="date-select"></select>
+                <label for="time-select">Select Time:</label>
+                <select id="time-select" name="time-select"></select>
                 <button type="submit" class="btn-primary">SEND</button>
             </form>
         </div>
